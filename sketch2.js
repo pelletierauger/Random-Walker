@@ -7,7 +7,7 @@ var foodToEat = [];
 var eatenFood = [];
 var s = 2.5;
 var ant;
-var foodAmount = 300;
+var foodAmount = 450;
 var bars;
 
 function setup() {
@@ -31,10 +31,11 @@ function draw() {
 }
 
 function showBars() {
-    var barsMax = 50;
-    var barsWidth = 200;
+    var barsMax = 75;
+    var barsWidth = 600;
+    var padding = 10;
     fill(125);
-    rect(0, height - barsMax, barsWidth, height);
+    rect(0, height - barsMax - padding * 2, barsWidth + padding * 2, height);
     stroke(255, 0, 0);
     strokeWeight(1);
     bars = [];
@@ -49,12 +50,17 @@ function showBars() {
     bars.sort(function(a, b) {
         return a - b;
     });
+    push();
+    translate(padding, -padding);
     for (var k = 0; k < bars.length; k++) {
         var mappedBar = map(bars[k], 0, bars[bars.length - 1], 0, barsMax);
-        line(k * (barsWidth / bars.length), height, k * (barsWidth / bars.length), height - mappedBar);
+        // line(k * (barsWidth / bars.length), height, k * (barsWidth / bars.length), height - mappedBar);
+        line(map(k, 0, bars.length - 1, 0, barsWidth), height, map(k, 0, bars.length - 1, 0, barsWidth), height - mappedBar);
     }
     // console.log(bars);
+    pop();
     noStroke();
+
 }
 
 function antWalk() {
@@ -108,7 +114,11 @@ function createFood() {
         var x = cos(i) * 1.5 * i;
         var y = sin(i) * 1.5 * i;
         var v = createVector(width / 2 + x, height / 2 + y);
-        foodToEat.push(v);
+        if (v.x < width - margin && v.x > margin) {
+            if (v.y < height - margin && v.y > margin) {
+                foodToEat.push(v);
+            }
+        }
     }
 }
 
