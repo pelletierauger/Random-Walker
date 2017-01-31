@@ -27,11 +27,11 @@ function setup() {
     textFont("Inconsolata");
     textSize(15);
     showBars();
+    showFood();
 }
 
 function draw() {
     for (var i = 0; i < 10; i++) {
-        showFood();
         antWalk();
     }
 }
@@ -79,6 +79,15 @@ function antWalk() {
             eatenFood.push(foodToEat[i]);
             foodToEat.splice(i, 1);
             showBars();
+            fill(255, 0, 0);
+            ellipse(eatenFood[eatenFood.length - 1].x, eatenFood[eatenFood.length - 1].y, s, s);
+            var e = eatenFood.length;
+            if (e >= 2) {
+                stroke(255, 0, 0);
+                strokeWeight(1);
+                line(eatenFood[e - 1].x, eatenFood[e - 1].y, eatenFood[e - 2].x, eatenFood[e - 2].y);
+                noStroke();
+            }
         }
     }
     var step = p5.Vector.random2D();
@@ -104,16 +113,16 @@ function showFood() {
         fill(0, 255, 0);
         ellipse(foodToEat[i].x, foodToEat[i].y, s, s);
     }
-    for (var j = 0; j < eatenFood.length; j++) {
-        fill(255, 0, 0);
-        ellipse(eatenFood[j].x, eatenFood[j].y, s, s);
-        stroke(255, 0, 0);
-        strokeWeight(0.5);
-        if (j >= 1) {
-            line(eatenFood[j - 1].x, eatenFood[j - 1].y, eatenFood[j].x, eatenFood[j].y);
-        }
-        noStroke();
-    }
+    // for (var j = 0; j < eatenFood.length; j++) {
+    //     fill(255, 0, 0);
+    //     ellipse(eatenFood[j].x, eatenFood[j].y, s, s);
+    //     stroke(255, 0, 0);
+    //     strokeWeight(0.5);
+    //     if (j >= 1) {
+    //         line(eatenFood[j - 1].x, eatenFood[j - 1].y, eatenFood[j].x, eatenFood[j].y);
+    //     }
+    //     noStroke();
+    // }
 }
 
 function createFood() {
