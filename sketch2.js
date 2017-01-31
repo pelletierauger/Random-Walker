@@ -30,7 +30,7 @@ function setup() {
     textSize(15);
     showBars();
     showFood();
-    // createInterface();
+    createInterface();
 }
 
 function createInterface() {
@@ -54,8 +54,8 @@ function createInterface() {
     div.style('width', '48%');
     div.style('font-size', '1.25em');
     div.style('padding', '0px 1% 0% 1%');
-    var s = 'Each time the walker eats food, a line is connected between it and the previously eaten food.';
-    s += '</br></br>At the bottom left, a graph plots the lengths of the lines, creating a curve which fits a <a href="https://en.wikipedia.org/wiki/Power_law">Power law</a>.';
+    var s = 'Each time the walker eats food, a line is drawn between it and the previous eaten food.';
+    s += '</br></br>At the bottom, a bar graph plots the lengths of the lines, creating a curve which fits a <a href="https://en.wikipedia.org/wiki/Power_law">Power law</a>.';
     s += '</br></br><span class="highlight">Press spacebar</span> to pause.';
     s += '</br><span class="highlight">Press t</span> to hide this text overlay.';
 
