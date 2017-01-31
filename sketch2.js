@@ -7,7 +7,7 @@ var foodToEat = [];
 var eatenFood = [];
 var s = 2.5;
 var ant;
-var foodAmount = 450;
+var foodAmount = 1800;
 var bars;
 var barsMax = 75;
 var padding = 10;
@@ -146,9 +146,9 @@ function createFood() {
     //     var randomY = random(margin, height - margin);
     //     var x = cos(i) * 1.5 * i;
     //     var y = sin(i) * 1.5 * i;
-    //     var v = createVector(width / 2 + x, height / 2 + y);
-    //     if (v.x < width - margin && v.x > margin) {
-    //         if (v.y < height - margin && v.y > margin) {
+    //     var v = createVector(width / 4 + x, height / 2 + y);
+    //     if (v.x < (width - margin) / 2 && v.x > margin / 2) {
+    //         if (v.y < height - barsMax - padding * 2 - margin / 2 && v.y > margin / 2) {
     //             foodToEat.push(v);
     //         }
     //     }
