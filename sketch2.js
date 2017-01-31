@@ -22,7 +22,7 @@ function setup() {
     pos = createVector(width / 2, height / 2);
     prev = pos.copy();
     createFood();
-    ant = createVector(width / 2, height / 2);
+    ant = createVector(width / 4, height / 2);
     barsWidth = width - padding * 2;
     textFont("Inconsolata");
     textSize(15);
@@ -31,8 +31,13 @@ function setup() {
 }
 
 function draw() {
-    for (var i = 0; i < 100; i++) {
-        antWalk();
+    if (foodToEat.length > 0) {
+        for (var i = 0; i < 100; i++) {
+            antWalk();
+        }
+    } else {
+        console.log("All eaten!");
+        noLoop();
     }
 }
 
@@ -81,6 +86,9 @@ function antWalk() {
             showBars();
             fill(255, 0, 0);
             ellipse(eatenFood[eatenFood.length - 1].x, eatenFood[eatenFood.length - 1].y, s, s);
+            push();
+            translate(width / 2, 0);
+            ellipse(eatenFood[eatenFood.length - 1].x, eatenFood[eatenFood.length - 1].y, s, s);
             var e = eatenFood.length;
             if (e >= 2) {
                 stroke(255, 0, 0);
@@ -88,6 +96,7 @@ function antWalk() {
                 line(eatenFood[e - 1].x, eatenFood[e - 1].y, eatenFood[e - 2].x, eatenFood[e - 2].y);
                 noStroke();
             }
+            pop();
         }
     }
     var step = p5.Vector.random2D();
@@ -100,8 +109,8 @@ function antWalk() {
     // }
     for (var j = 0; j < times; j++) {
         ellipse(ant.x, ant.y, s, s);
-        if (ant.x + step.x < width - margin && ant.x + step.x > margin) {
-            if (ant.y + step.y < height - barsMax - padding * 2 - margin && ant.y + step.y > margin) {
+        if (ant.x + step.x < (width - margin) / 2 && ant.x + step.x > margin / 2) {
+            if (ant.y + step.y < height - barsMax - padding * 2 - margin / 2 && ant.y + step.y > margin / 2) {
                 ant.add(step);
             }
         }
@@ -127,8 +136,8 @@ function showFood() {
 
 function createFood() {
     for (var i = 0; i < foodAmount; i++) {
-        var randomX = random(margin, width - margin);
-        var randomY = random(margin, height - barsMax - padding * 2 - margin);
+        var randomX = random(margin / 2, (width - margin) / 2);
+        var randomY = random(margin / 2, height - barsMax - padding * 2 - margin / 2);
         var v = createVector(randomX, randomY);
         foodToEat.push(v);
     }
