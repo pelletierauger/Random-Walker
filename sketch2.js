@@ -36,7 +36,7 @@ function draw() {
             antWalk();
         }
     } else {
-        console.log("All eaten!");
+        console.log("All the food is eaten.");
         noLoop();
     }
 }
@@ -80,7 +80,7 @@ function antWalk() {
         // console.log(dist(ant.x, ant.y, food[i].x, food[i].y));
         // console.log("Quoi?");
         if (dist(ant.x, ant.y, foodToEat[i].x, foodToEat[i].y) <= s * 2) {
-            console.log("La fourmi mange!");
+            // console.log("La fourmi mange!");
             eatenFood.push(foodToEat[i]);
             foodToEat.splice(i, 1);
             showBars();
