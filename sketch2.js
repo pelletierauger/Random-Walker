@@ -9,6 +9,9 @@ var s = 2.5;
 var ant;
 var foodAmount = 450;
 var bars;
+var barsMax = 75;
+var padding = 10;
+var barsWidth;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -20,23 +23,27 @@ function setup() {
     prev = pos.copy();
     createFood();
     ant = createVector(width / 2, height / 2);
+    barsWidth = width - padding * 2;
+    textFont("Inconsolata");
+    textSize(15);
+    showBars();
 }
 
 function draw() {
     for (var i = 0; i < 10; i++) {
         showFood();
         antWalk();
-        showBars();
     }
 }
 
 function showBars() {
-    var barsMax = 75;
-    var barsWidth = 600;
-    var padding = 10;
-    fill(125);
+
+    fill(85);
     rect(0, height - barsMax - padding * 2, barsWidth + padding * 2, height);
     stroke(255, 0, 0);
+    fill(255, 0, 0);
+    strokeWeight(0);
+    text(eatenFood.length + "/" + (foodToEat.length + eatenFood.length), padding, height - barsMax);
     strokeWeight(1);
     bars = [];
     for (var j = 0; j < eatenFood.length; j++) {
@@ -71,15 +78,23 @@ function antWalk() {
             console.log("La fourmi mange!");
             eatenFood.push(foodToEat[i]);
             foodToEat.splice(i, 1);
+            showBars();
         }
     }
     var step = p5.Vector.random2D();
+    var ran = random(0, 1000);
+    var times = 1;
     step.setMag(s);
     fill(255, 50);
-    ellipse(ant.x, ant.y, s, s);
-    if (ant.x + step.x < width - margin && ant.x + step.x > margin) {
-        if (ant.y + step.y < height - margin && ant.y + step.y > margin) {
-            ant.add(step);
+    // if (ran <= 1) {
+    //     var times = random(0, 500);
+    // }
+    for (var j = 0; j < times; j++) {
+        ellipse(ant.x, ant.y, s, s);
+        if (ant.x + step.x < width - margin && ant.x + step.x > margin) {
+            if (ant.y + step.y < height - barsMax - padding * 2 - margin && ant.y + step.y > margin) {
+                ant.add(step);
+            }
         }
     }
 }
@@ -93,7 +108,7 @@ function showFood() {
         fill(255, 0, 0);
         ellipse(eatenFood[j].x, eatenFood[j].y, s, s);
         stroke(255, 0, 0);
-        strokeWeight(1);
+        strokeWeight(0.5);
         if (j >= 1) {
             line(eatenFood[j - 1].x, eatenFood[j - 1].y, eatenFood[j].x, eatenFood[j].y);
         }
@@ -102,24 +117,24 @@ function showFood() {
 }
 
 function createFood() {
+    for (var i = 0; i < foodAmount; i++) {
+        var randomX = random(margin, width - margin);
+        var randomY = random(margin, height - barsMax - padding * 2 - margin);
+        var v = createVector(randomX, randomY);
+        foodToEat.push(v);
+    }
     // for (var i = 0; i < foodAmount; i++) {
     //     var randomX = random(margin, width - margin);
     //     var randomY = random(margin, height - margin);
-    //     var v = createVector(randomX, randomY);
-    //     foodToEat.push(v);
+    //     var x = cos(i) * 1.5 * i;
+    //     var y = sin(i) * 1.5 * i;
+    //     var v = createVector(width / 2 + x, height / 2 + y);
+    //     if (v.x < width - margin && v.x > margin) {
+    //         if (v.y < height - margin && v.y > margin) {
+    //             foodToEat.push(v);
+    //         }
+    //     }
     // }
-    for (var i = 0; i < foodAmount; i++) {
-        var randomX = random(margin, width - margin);
-        var randomY = random(margin, height - margin);
-        var x = cos(i) * 1.5 * i;
-        var y = sin(i) * 1.5 * i;
-        var v = createVector(width / 2 + x, height / 2 + y);
-        if (v.x < width - margin && v.x > margin) {
-            if (v.y < height - margin && v.y > margin) {
-                foodToEat.push(v);
-            }
-        }
-    }
 }
 
 
