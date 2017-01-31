@@ -17,7 +17,8 @@ var showPanels = true;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    margin = width * 0.025;
+    margin = width * 0.025 / 2;
+    padding = width * 0.025 / 4;
     background(0);
     fill(255);
     noStroke();
