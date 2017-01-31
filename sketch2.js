@@ -12,6 +12,8 @@ var bars;
 var barsMax = 75;
 var padding = 10;
 var barsWidth;
+var interface;
+var showPanels = true;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -28,6 +30,49 @@ function setup() {
     textSize(15);
     showBars();
     showFood();
+    // createInterface();
+}
+
+function createInterface() {
+    interface = createDiv('');
+    interface.style('position', 'absolute');
+    interface.style('width', '100%');
+    // interface.style('bottom', '2.5em');
+    interface.style('padding', '10px 0px 0px 0px');
+    interface.style('opacity', '1');
+    interface.style('background-color', 'rgba(65, 65, 65, 0.5)');
+    interface.style('font-family', 'Inconsolata', 'Helvetica', 'Arial');
+    // interface.style('line-height', '0.75em');
+    var calculateHeight = windowHeight - 50;
+    interface.style("max-height", calculateHeight + "px");
+    interface.style("overflow", "auto");
+    interface.style('color', 'rgba(255, 255, 255, 0.5');
+
+    var div = createDiv('<span class="highlight">A random walker forages for green food.</span> </br>When eaten, food turns red.');
+    div.parent(interface);
+    div.style('float', 'left');
+    div.style('width', '48%');
+    div.style('font-size', '1.25em');
+    div.style('padding', '0px 1% 0% 1%');
+    var s = 'Each time the walker eats food, a line is connected between it and the previously eaten food.';
+    s += '</br></br>At the bottom left, a graph plots the lengths of the lines, creating a curve which fits a <a href="https://en.wikipedia.org/wiki/Power_law">Power law</a>.';
+    s += '</br></br><span class="highlight">Press spacebar</span> to pause.';
+    s += '</br><span class="highlight">Press t</span> to hide this text overlay.';
+
+    var div2 = createDiv(s);
+    div2.parent(interface);
+    div2.style('float', 'left');
+    div2.style('width', '48%');
+    div2.style('padding', '0px 1% 0% 1%');
+    div2.style('font-size', '1.25em');
+    div2.style('padding-bottom', '1em');
+
+
+
+    // this.nameDiv = createDiv(name + ' : ');
+    // this.nameDiv.parent(this.div);
+    // this.nameDiv.style('float', 'left');
+    // this.nameDiv.style('padding-right', '0.5em');
 }
 
 function draw() {
@@ -164,6 +209,15 @@ function keyPressed() {
         } else {
             loop();
             looping = true;
+        }
+    }
+    if (key == 't' || key == 'T') {
+        if (showPanels) {
+            showPanels = false;
+            interface.style("display", "none");
+        } else {
+            showPanels = true;
+            interface.style("display", "block");
         }
     }
 }
