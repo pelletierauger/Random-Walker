@@ -47,7 +47,7 @@ function createInterface() {
     var calculateHeight = windowHeight - 50;
     interface.style("max-height", calculateHeight + "px");
     interface.style("overflow", "auto");
-    interface.style('color', 'rgba(155, 155, 155, 1');
+    // interface.style('color', 'rgba(155, 155, 155, 1');
 
     var div = createDiv('<span class="highlight">A random walker is searching for green food.</span>');
     div.parent(interface);
