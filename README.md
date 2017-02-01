@@ -1,2 +1,2 @@
-# Levy-Flight
-A random walker following a Levy Flight algorithm
+# Random-Walker
+Plotting the lengths between foods eaten by a random walker.
