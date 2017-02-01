@@ -191,8 +191,8 @@ function createFood() {
     // for (var i = 0; i < foodAmount; i++) {
     //     var randomX = random(margin, width - margin);
     //     var randomY = random(margin, height - margin);
-    //     var x = cos(i) * 1.5 * i;
-    //     var y = sin(i) * 1.5 * i;
+    //     var x = cos(i) * 0.25 * i;
+    //     var y = sin(i) * 0.25 * i;
     //     var v = createVector(width / 4 + x, height / 2 + y);
     //     if (v.x < (width - margin) / 2 && v.x > margin / 2) {
     //         if (v.y < height - barsMax - padding * 2 - margin / 2 && v.y > margin / 2) {
