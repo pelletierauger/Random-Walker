@@ -59,7 +59,7 @@ function createInterface() {
     s += '</br></br>At the bottom, a bar graph plots the lengths of the lines, creating a curve which fits a <a href="https://en.wikipedia.org/wiki/Power_law">power law</a>.';
     s += '</br></br><span class="highlight">Press spacebar</span> to pause.';
     s += '</br><span class="highlight">Press t</span> to hide this text overlay.';
-
+    s += "</br><a href='https://github.com/pelletierauger/Random-Walker'>Source code</a>.";
     var div2 = createDiv(s);
     div2.parent(interface);
     div2.style('float', 'left');
