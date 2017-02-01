@@ -49,7 +49,7 @@ function createInterface() {
     interface.style("overflow", "auto");
     interface.style('color', 'rgba(155, 155, 155, 1');
 
-    var div = createDiv('<span class="highlight">A random walker is searching for green food.</span> </br>When eaten, food turns red.');
+    var div = createDiv('<span class="highlight">A random walker is searching for green food.</span>');
     div.parent(interface);
     div.style('float', 'left');
     div.style('width', '48%');
@@ -130,7 +130,7 @@ function antWalk() {
             eatenFood.push(foodToEat[i]);
             foodToEat.splice(i, 1);
             showBars();
-            fill(255, 0, 0);
+            fill(0, 0, 0);
             ellipse(eatenFood[eatenFood.length - 1].x, eatenFood[eatenFood.length - 1].y, s, s);
             push();
             translate(width / 2, 0);
