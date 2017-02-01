@@ -132,6 +132,7 @@ function antWalk() {
             showBars();
             fill(0, 0, 0);
             ellipse(eatenFood[eatenFood.length - 1].x, eatenFood[eatenFood.length - 1].y, s, s);
+            fill(255, 0, 0);
             push();
             translate(width / 2, 0);
             ellipse(eatenFood[eatenFood.length - 1].x, eatenFood[eatenFood.length - 1].y, s, s);
